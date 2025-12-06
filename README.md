@@ -51,22 +51,37 @@ python3 -m venv venv
 
 # Activate virtual environment
 source venv/bin/activate  # On macOS/Linux
-
 # venv\Scripts\activate    # On Windows
 ```
 
 ### Build and Install Package Locally
 
+#### Modern Method (Recommended)
 ```bash
-# Install build tools
-pip install setuptools wheel
+# Install modern build tools
+pip install build
 
-# Build the package (auto-generates version)
-python setup.py sdist bdist_wheel
+# Build the package (auto-generates version) 
+python -m build
 
 # Install the package locally (version will vary)
 pip install dist/azurehello-*.whl
+```
 
+#### Legacy Method (Still Supported)
+```bash
+# Install legacy build tools
+pip install setuptools wheel
+
+# Build the package
+python setup.py sdist bdist_wheel
+
+# Install the package locally
+pip install dist/azurehello-*.whl
+```
+
+#### Test Installation
+```bash
 # Test the installed package
 python -c "from app.hello import say_hello; print(say_hello('Local Test'))"
 ```
@@ -119,8 +134,8 @@ python -m pip install twine
 ### Build and Upload Package to Azure Artifacts
 
 ```bash
-# Build the package (creates new version)
-python setup.py sdist bdist_wheel
+# Build the package (creates new version using modern method)
+python -m build
 
 # Upload specific version to your Azure Artifacts feed
 python -m twine upload --repository-url https://pkgs.dev.azure.com/atul-kamble/project/_packaging/python-packages/pypi/upload/ dist/azurehello-1.0.1*

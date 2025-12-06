@@ -17,14 +17,14 @@ steps:
     versionSpec: '3.x'
   displayName: "Use Python 3.x"
 
-# Step 2: Install setuptools + wheel + twine
+# Step 2: Install build tools + twine
 - script: |
-    pip install setuptools wheel twine
+    pip install build twine
   displayName: "Install packaging tools"
 
 # Step 3: Build Python package
 - script: |
-    python setup.py sdist bdist_wheel
+    python -m build
   displayName: "Build Python package"
 
 # Step 4: Publish Python package to Azure Artifacts

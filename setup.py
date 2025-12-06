@@ -21,13 +21,29 @@ def get_version():
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
         return f"{base_version}.{timestamp}"
 
-version = get_version()
+# For backward compatibility and dynamic version access
+__version__ = get_version()
 
-setup(
-    name="azurehello",
-    version=version,
-    packages=find_packages(),
-    install_requires=[],
-    author="Atul J. Kamble",
-    description="Basic Python Hello World package published to Azure Artifacts",
-)
+if __name__ == "__main__":
+    setup(
+        name="azurehello",
+        version=__version__,
+        packages=find_packages(),
+        install_requires=[],
+        author="Atul J. Kamble",
+        description="Basic Python Hello World package published to Azure Artifacts",
+        long_description=open("README.md").read(),
+        long_description_content_type="text/markdown",
+        python_requires=">=3.8",
+        classifiers=[
+            "Development Status :: 4 - Beta",
+            "Intended Audience :: Developers",
+            "License :: OSI Approved :: MIT License",
+            "Programming Language :: Python :: 3",
+            "Programming Language :: Python :: 3.8",
+            "Programming Language :: Python :: 3.9", 
+            "Programming Language :: Python :: 3.10",
+            "Programming Language :: Python :: 3.11",
+            "Programming Language :: Python :: 3.12",
+        ],
+    )
