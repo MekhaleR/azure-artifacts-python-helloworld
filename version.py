@@ -1,6 +1,12 @@
+#!/usr/bin/env python3
+"""
+Version management script for local development.
+Generates a unique version using timestamp for local builds.
+"""
+
 import os
+import time
 from datetime import datetime
-from setuptools import setup, find_packages
 
 def get_version():
     """Get version for the package"""
@@ -11,7 +17,7 @@ def get_version():
     github_run = os.getenv("GITHUB_RUN_NUMBER")
     
     if azure_build:
-        # Azure DevOps build number (format: yyyymmdd.r)
+        # Azure DevOps build number
         return f"{base_version}.{azure_build}"
     elif github_run:
         # GitHub Actions run number
@@ -21,13 +27,13 @@ def get_version():
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
         return f"{base_version}.{timestamp}"
 
-version = get_version()
+def update_version_file():
+    """Update version.txt file with current version"""
+    version = get_version()
+    with open("version.txt", "w") as f:
+        f.write(version)
+    print(f"Version updated to: {version}")
+    return version
 
-setup(
-    name="azurehello",
-    version=version,
-    packages=find_packages(),
-    install_requires=[],
-    author="Atul J. Kamble",
-    description="Basic Python Hello World package published to Azure Artifacts",
-)
+if __name__ == "__main__":
+    update_version_file()

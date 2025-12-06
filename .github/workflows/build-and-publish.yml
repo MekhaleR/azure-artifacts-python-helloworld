@@ -29,6 +29,8 @@ jobs:
     
     # Step 4: Build Python package
     - name: Build Python package
+      env:
+        GITHUB_RUN_NUMBER: ${{ github.run_number }}
       run: |
         python setup.py sdist bdist_wheel
     

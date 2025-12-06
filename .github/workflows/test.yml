@@ -29,6 +29,8 @@ jobs:
         pip install setuptools wheel
     
     - name: Build package
+      env:
+        GITHUB_RUN_NUMBER: ${{ github.run_number }}
       run: |
         python setup.py sdist bdist_wheel
     

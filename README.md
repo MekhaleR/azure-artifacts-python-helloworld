@@ -61,15 +61,39 @@ source venv/bin/activate  # On macOS/Linux
 # Install build tools
 pip install setuptools wheel
 
-# Build the package
+# Build the package (auto-generates version)
 python setup.py sdist bdist_wheel
 
-# Install the package locally
-pip install dist/azurehello-1.0.1-py3-none-any.whl
+# Install the package locally (version will vary)
+pip install dist/azurehello-*.whl
 
 # Test the installed package
 python -c "from app.hello import say_hello; print(say_hello('Local Test'))"
 ```
+
+## Automatic Version Management
+
+This project uses **automatic version incrementing** to prevent upload conflicts:
+
+### **Versioning Strategy:**
+- **Base Version**: `1.0`
+- **Azure DevOps**: `1.0.{BuildNumber}` (e.g., `1.0.20251206.1`)
+- **GitHub Actions**: `1.0.{RunNumber}` (e.g., `1.0.42`)
+- **Local Development**: `1.0.{Timestamp}` (e.g., `1.0.20251206143045`)
+
+### **How It Works:**
+```python
+# setup.py automatically detects environment
+azure_build = os.getenv("BUILD_BUILDNUMBER")    # Azure DevOps
+github_run = os.getenv("GITHUB_RUN_NUMBER")     # GitHub Actions
+# Local uses timestamp if no CI detected
+```
+
+### **Benefits:**
+- ✅ **No version conflicts** - each build gets unique version
+- ✅ **CI/CD friendly** - works with both Azure DevOps and GitHub Actions
+- ✅ **Local development** - timestamp-based versions for testing
+- ✅ **Traceable** - version numbers indicate build source
 
 ## Manual Upload to Azure Artifacts
 
