@@ -1,5 +1,5 @@
 def say_hello(name="Azure Artifacts"):
-    return f"Hello from {name}!"
+    return f"Hello from new {name}!"
 
 if __name__ == "__main__":
     print(say_hello())
