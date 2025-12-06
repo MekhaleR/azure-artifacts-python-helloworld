@@ -92,10 +92,16 @@ python -m pip install keyring artifacts-keyring
 python -m pip install twine
 ```
 
-### Upload Package to Azure Artifacts
+### Build and Upload Package to Azure Artifacts
 
 ```bash
-# Upload to your Azure Artifacts feed
+# Build the package (creates new version)
+python setup.py sdist bdist_wheel
+
+# Upload specific version to your Azure Artifacts feed
+python -m twine upload --repository-url https://pkgs.dev.azure.com/atul-kamble/project/_packaging/python-packages/pypi/upload/ dist/azurehello-1.0.1*
+
+# Or upload all packages in dist/
 python -m twine upload --repository-url https://pkgs.dev.azure.com/atul-kamble/project/_packaging/python-packages/pypi/upload/ dist/*
 ```
 
