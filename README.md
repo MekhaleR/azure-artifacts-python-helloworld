@@ -79,6 +79,8 @@ python -c "from app.hello import say_hello; print(say_hello('Local Test'))"
 1. Go to [Azure DevOps](https://dev.azure.com)
 2. Create a new organization or use existing one
 3. Create a new project (e.g., "python-artifacts-demo")
+4. project url 
+[example-url](https://dev.azure.com/atul-kamble/project)
 
 #### 1.2 Create Azure Artifacts Feed
 1. In your Azure DevOps project, go to **Artifacts**
