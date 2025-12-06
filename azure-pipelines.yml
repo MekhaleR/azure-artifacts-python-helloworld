@@ -29,10 +29,11 @@ steps:
   displayName: "Authenticate with Azure Artifacts"
 
 - script: |
+    python -m twine upload -r "python-packages" --config-file $(PYPIRC_PATH) dist/*
   displayName: "Upload package to Azure Artifacts"
 
 # Step 5: Install package from Azure Artifacts (test)
 - script: |
-    pip install azurehello --extra-index-url https://dev.azure.com/atul-kamble/project/_artifacts/feed/python-packages
+    pip install azurehello --extra-index-url https://pkgs.dev.azure.com/atul-kamble/project/_packaging/python-packages/pypi/simple/
     python -c "import app.hello as h; print(h.say_hello('Pipeline Test'))"
   displayName: "Install & test package"
