@@ -21,6 +21,7 @@ azure-artifacts-python-helloworld/
 
 ```bash
 # Navigate to project directory
+git clone https://github.com/atulkamble/azure-artifacts-python-helloworld.git
 cd azure-artifacts-python-helloworld
 
 # Run the hello world script
