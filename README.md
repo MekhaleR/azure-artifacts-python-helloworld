@@ -28,20 +28,17 @@ cd azure-artifacts-python-helloworld
 python app/hello.py
 ```
 
-### 2. Run as a Module
+### 2. Run as a Module 
 
 ```bash
 # Run as Python module
 python -m app.hello
 ```
 
-### 3. Import and Use
+### 3. One Line Import and Execute
 
 ```python
-from app.hello import say_hello
-
-# Use the function
-print(say_hello("Your Name"))
+python -c "from app.hello import say_hello; print(say_hello('Your Name'))"
 ```
 
 ## Local Development
