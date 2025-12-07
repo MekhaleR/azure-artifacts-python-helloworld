@@ -1,1 +1,15 @@
-azurehello @ file:./dist
+# The project package is built into `dist/` by running:
+#
+#   python -m build
+#
+# Then install the generated wheel with either:
+#
+#   pip install dist/*.whl
+#
+# or, if you want `pip install -r requirements.txt` to install the
+# package, first build the distribution so `dist/` exists.
+
+# Local package dependency removed to avoid install-time errors when
+# `dist/` is not present. Uncomment and adjust the following line
+# if you intentionally want pip to install the local wheel from `dist/`:
+# azurehello @ file:./dist
