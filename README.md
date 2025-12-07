@@ -15,7 +15,7 @@ azure-artifacts-python-helloworld/
 └── README.md
 ```
 
-## Quick Start
+## Hello World
 
 ### 1. Run the Code Directly
 
